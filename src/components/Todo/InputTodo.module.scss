@@ -1,0 +1,33 @@
+.input-wrapper{
+    margin-top: 50px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form{
+    background-color: red;
+    width: 75%;
+    position: relative;
+}
+
+input[type='text']{
+    left: 0;
+    position: absolute;
+    background-color: blue;
+    width: 100%;
+    padding: 3px;
+}
+
+input[type='submit']{
+    position: absolute;
+    right: -9px;
+    z-index: 700;
+}
+
+
+.button{
+    width: 55px;
+    right: -60px;
+}
