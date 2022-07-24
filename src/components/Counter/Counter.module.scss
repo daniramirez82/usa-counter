@@ -1,0 +1,15 @@
+.wrapper-counter {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+}
+
+
+$c: 0.747;
+
+@for $i from 1 through 4 {
+    .wrapper div:nth-child(#{$i}) div section{
+        background-color: rgba(0, 0, 0, $c - ($i*0.09))
+    }
+
+}
