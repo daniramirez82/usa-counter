@@ -12,8 +12,8 @@ const InputTodo = ({addATask}) => {
     <div className={styles["input-wrapper"]}>
       
       <form action="" onSubmit={sendNewTask}>
-        <input value={task} onChange={(e)=> setTask(e.target.value)} type="text" placeholder="Todo with Dad???" />
-        <input type="submit" value="ADD" className={styles.button} /> 
+        <input value={task} onInput={(e)=> setTask(e.target.value)} type="text" placeholder="Todo with Dad???" />
+        <input disabled={!task} type="submit" value="ADD" className={styles.button} /> 
         
       </form>
     </div>
