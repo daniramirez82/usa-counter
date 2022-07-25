@@ -33,7 +33,6 @@ export const getAllTask = async () => {
 export const deleteTask =  async (id) => {
   try {
     await deleteDoc(doc(db, "task", id));
-    console.log("borrado", id);
     return id;
   } catch (err) {
     return console.log("a error ocurrs", err);

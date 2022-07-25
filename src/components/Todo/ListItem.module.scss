@@ -1,0 +1,16 @@
+.item-wrapper{
+    position: relative;
+    padding: 8px;
+    background-color: yellowgreen;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    margin: 16px;
+    border-radius: 8px;
+}
+
+.icon-cont {
+    position: absolute;
+    width: 20px;
+    right: 10px;
+}

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "preact/hooks";
 import styles from "./Todo.module.scss";
 import InputTodo from "./InputTodo";
+import ListItem from "./ListItem";
 import { addNewTask, getAllTask, deleteTask } from "../../db/dataBase";
 
 const initialState = [{ id: null, task: null }];
@@ -17,7 +18,7 @@ const Todo = () => {
     const savedTaskId = await addNewTask(task);
 
     setListTodo((oldState) => {
-      const arr = [...oldState]
+      const arr = [...oldState];
       arr.unshift({ id: savedTaskId, task });
       return arr;
     });
@@ -30,19 +31,16 @@ const Todo = () => {
   };
 
   return (
-    <>
+    <div className={styles["todo-wrapper"]}>
       <InputTodo addATask={addATask} />
-      <ul>
-        {listTodo.map((t) => (
-          <li key = {t.id} data-id={t.id}>
-            {t.task}::::
-            <span data-id={t.id} onClick={deleteATask}>
-              X
-            </span>
-          </li>
-        ))}
-      </ul>
-    </>
+      <div className={styles.list}>
+        <ul className={styles.ul}>
+          {listTodo.map((t) => (
+            <ListItem id={t.id} task={t.task} onDeleteATask={deleteATask} />
+          ))}
+        </ul>
+      </div>
+    </div>
   );
 };
 
