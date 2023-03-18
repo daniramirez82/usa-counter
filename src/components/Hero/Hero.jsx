@@ -5,7 +5,7 @@ import styles from './Hero.module.scss';
 
 const Hero = () => {
 
-    const FINAL_DATE = new Date(2022, 9, 13);
+    const FINAL_DATE = new Date(2024, 9, 13);
 
     return (
         <div className={styles['wrapper-hero']}>

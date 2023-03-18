@@ -1,7 +1,4 @@
 
-
-
-
 export const calculateCountdown = (finalDate) => {
 
     const finalDateMS = new Date(finalDate).getTime();

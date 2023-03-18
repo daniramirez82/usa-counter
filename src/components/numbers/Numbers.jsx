@@ -1,6 +1,6 @@
 import { h } from 'preact';
 import { useRef, useEffect } from 'preact/hooks';
-import styles from './Numbers.module.css';
+import styles from './Numbers.module.scss';
 
 const Number = ({ number, field }) => {
 
