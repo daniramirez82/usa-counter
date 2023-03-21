@@ -1,44 +1,49 @@
-import { useState, useEffect } from "preact/hooks";
+import { useEffect } from "preact/hooks";
 import styles from "./Todo.module.scss";
 import InputTodo from "./InputTodo";
 import ListItem from "./ListItem";
 import { addNewTask, getAllTask, deleteTask } from "../../db/dataBase";
-
-const initialState = [{ id: null, task: null }];
+import { useSignal } from "@preact/signals";
 
 const Todo = () => {
-  const [listTodo, setListTodo] = useState(initialState);
+  const todos = useSignal([]);
 
   useEffect(async () => {
     const listFromServer = await getAllTask();
-    setListTodo(listFromServer);
+    todos.value = listFromServer;
   }, []);
 
   const addATask = async (task) => {
-    const savedTaskId = await addNewTask(task);
-
-    setListTodo((oldState) => {
-      const arr = [...oldState];
-      arr.unshift({ id: savedTaskId, task });
-      return arr;
-    });
+    try {
+      const savedTaskId = await addNewTask(task);
+      todos.value = [...todos.value, { id: savedTaskId, task: task }];
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const deleteATask = async (e) => {
-    const deletedID = await deleteTask(e.target.dataset.id);
-    const tempTasksArr = listTodo.filter((t) => t.id !== deletedID);
-    setListTodo(tempTasksArr);
+    try {
+      const deletedID = await deleteTask(e.target.dataset.id);
+      todos.value = todos.value.filter((t) => t.id !== deletedID);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
     <div className={styles["todo-wrapper"]}>
-      <InputTodo addATask={addATask} />
-      <div className={styles.list}>
-        <ul className={styles.ul}>
-          {listTodo.map((t) => (
-            <ListItem id={t.id} task={t.task} onDeleteATask={deleteATask} />
-          ))}
-        </ul>
+      <div className={styles.todo}>
+        <div className={styles["todo-input"]}>
+          <InputTodo addATask={addATask} />
+        </div>
+        <div className={styles.list}>
+          <ul className={styles.ul}>
+            {todos.value.map((t) => (
+              <ListItem id={t.id} task={t.task} onDeleteATask={deleteATask} />
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   );

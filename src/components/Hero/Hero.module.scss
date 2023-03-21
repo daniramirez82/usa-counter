@@ -64,6 +64,8 @@ video {
     display: flex;
     flex-direction: column;
    align-items: center;
+   max-width: 375px;
+
    h1{
     color: aliceblue;
    }

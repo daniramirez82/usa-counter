@@ -1,6 +1,5 @@
-@import 'normalize.css/normalize.css';
+@import "normalize.css/normalize.css";
 :root {
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -12,5 +11,5 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Righteous', cursive;
+  font-family: "Inter", sans-serif;
 }
