@@ -1,15 +1,19 @@
 import styles from "./ListItem.module.scss";
 
-const ListItem = ({ id, task, onDeleteATask }) => {
+const ListItem = ({ id, task, done, onUpdateTask, onDeleteATask }) => {
+  const handleCheck = (e) => {
+    onUpdateTask(e.target.checked, id);
+  };
   return (
     <li key={id} className={styles["item-wrapper"]}>
       <label htmlFor="id">
-        <span className={styles.container}>
-
-          <input type="checkbox" />
-          <span className={styles.checkmark}></span>
-        </span>
-        <span>{task}</span>
+        <div className={styles["item-content"]}>
+          <span className={styles.container}>
+            <input type="checkbox" checked={done} onChange={handleCheck} />
+            <span className={styles.checkmark}></span>
+          </span>
+          <span className={styles["item-task"]}>{task}</span>
+        </div>
         <span
           data-id={id}
           className={styles["icon-cont"]}

@@ -2,8 +2,9 @@ import { useEffect } from "preact/hooks";
 import styles from "./Todo.module.scss";
 import InputTodo from "./InputTodo";
 import ListItem from "./ListItem";
-import { addNewTask, getAllTask, deleteTask } from "../../db/dataBase";
+import { addNewTask, getAllTask, deleteTask, updateTaskInDB } from "../../db/dataBase";
 import { useSignal } from "@preact/signals";
+import { async } from "@firebase/util";
 
 const Todo = () => {
   const todos = useSignal([]);
@@ -15,8 +16,13 @@ const Todo = () => {
 
   const addATask = async (task) => {
     try {
-      const savedTaskId = await addNewTask(task);
-      todos.value = [...todos.value, { id: savedTaskId, task: task }];
+      const taskToSave = {
+        task,
+        done: false,
+        timestamp: Date.now(),
+      };
+      const savedTaskId = await addNewTask(taskToSave);
+      todos.value = [...todos.value, { id: savedTaskId, ...taskToSave }];
     } catch (err) {
       console.log(err);
     }
@@ -31,6 +37,10 @@ const Todo = () => {
     }
   };
 
+  const updateTask = async (checkedValue, taskId)=>{
+   const idToChange = await updateTaskInDB(taskId, checkedValue);
+  }
+
   return (
     <div className={styles["todo-wrapper"]}>
       <div className={styles.todo}>
@@ -40,7 +50,13 @@ const Todo = () => {
         <div className={styles.list}>
           <ul className={styles.ul}>
             {todos.value.map((t) => (
-              <ListItem id={t.id} task={t.task} onDeleteATask={deleteATask} />
+              <ListItem
+                id={t.id}
+                task={t.task}
+                done={t.done}
+                onUpdateTask ={updateTask}
+                onDeleteATask={deleteATask}
+              />
             ))}
           </ul>
         </div>

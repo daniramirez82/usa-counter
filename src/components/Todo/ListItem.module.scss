@@ -1,35 +1,47 @@
-.item-wrapper{
-    position: relative;
-    padding: 8px;
-    background-color: white;
-    display: flex;
-    align-items: center;
-    justify-content: start;
-    margin: 16px;
-    border-radius: 18px;
-    height: 52px;
-    color: #6e0bb0;
-    font-size: 16px;
-    font-weight: 800;
+.item-wrapper {
+  position: relative;
+  padding: 8px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  margin: 16px;
+  border-radius: 18px;
+  min-height: 52px;
+  color: #9526C8;
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.item-content {
+  display: flex;
+  align-items: center;
+}
+
+.item-task{
+  width: 100%;
+  padding-left: 20px;
+  flex-gro: 100%;
 }
 
 .icon-cont {
-    width: 20px;
-    right: 10px;
+  min-width: 20px;
+  right: 10px;
 }
 
 //checkbox
 
-label{
+label {
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.container{
-  display: block;
+.container {
   position: relative;
+  flex-grow: 1;
+  width: 32px;
   height: 100%;
   margin-left: 5px;
   margin-bottom: 30px;
@@ -39,7 +51,6 @@ label{
   -ms-user-select: none;
   user-select: none;
 }
-
 
 .container input {
   position: absolute;

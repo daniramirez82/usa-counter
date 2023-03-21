@@ -1,6 +1,7 @@
 import { db } from "./firebaseConfig";
 import {
   collection,
+  updateDoc,
   addDoc,
   getDocs,
   deleteDoc,
@@ -25,7 +26,8 @@ export const getAllTask = async () => {
   const list = [];
   const querySnapshot = await getDocs(collection(db, "task"));
   querySnapshot.forEach((doc) => {
-    list.push({ id: doc.id, task: doc.data().task });
+    const {task, done, timestamp} = doc.data().task;
+    list.push({ id: doc.id, task, done, timestamp });
   });
   return list;
 };
@@ -38,3 +40,13 @@ export const deleteTask =  async (id) => {
     return console.log("a error ocurrs", err);
   }
 };
+
+export const updateTaskInDB = async (id, checkedValue) =>{
+  try{
+    const taskRef = doc(db, "task", id)
+    await updateDoc( taskRef , {'task.done': checkedValue});
+    return id;
+  }catch(err){
+    return console.log ("An Error Ocurrs", err)
+  }
+}
