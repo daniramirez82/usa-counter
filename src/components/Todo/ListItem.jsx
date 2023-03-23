@@ -5,11 +5,11 @@ const ListItem = ({ id, task, onDeleteATask }) => {
     <li key={id} className={styles["item-wrapper"]}>
       <label htmlFor="id">
         <span className={styles.container}>
-          
+
           <input type="checkbox" />
           <span className={styles.checkmark}></span>
         </span>
-{task}
+        <span>{task}</span>
         <span
           data-id={id}
           className={styles["icon-cont"]}

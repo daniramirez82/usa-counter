@@ -14,30 +14,39 @@
 }
 
 .icon-cont {
-    position: absolute;
     width: 20px;
     right: 10px;
 }
 
 //checkbox
 
+label{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .container{
-    display: block;
+  display: block;
   position: relative;
-  padding-left: 75px;
-  margin-bottom: 12px;
+  height: 100%;
+  margin-left: 5px;
+  margin-bottom: 30px;
   cursor: pointer;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
 }
+
+
 .container input {
   position: absolute;
   opacity: 0;
   cursor: pointer;
-  height: 50px;
-  width: 50px;
+  height: 32px;
+  width: 32px;
   left: 0;
   z-index: 10;
 }
@@ -48,9 +57,9 @@
   top: 0;
   left: 0;
   border-radius: 30px;
-  height: 50px;
-  width: 50px;
-  background-color: #b92d2d;
+  height: 32px;
+  width: 32px;
+  background-color: #cecbcb;
   z-index: 1;
 }
 
@@ -78,8 +87,8 @@
 
 /* Style the checkmark/indicator */
 .container .checkmark:after {
-  left: 9px;
-  top: 5px;
+  left: 12px;
+  top: 8px;
   width: 5px;
   height: 10px;
   border: solid white;
