@@ -39,6 +39,10 @@ const Todo = () => {
 
   const updateTask = async (checkedValue, taskId)=>{
    const idToChange = await updateTaskInDB(taskId, checkedValue);
+   const taskIndex = todos.value.findIndex(t=> t.id === taskId);
+   if(taskIndex >= 0){
+    todos.value[taskIndex].done = checkedValue;
+   }
   }
 
   return (
