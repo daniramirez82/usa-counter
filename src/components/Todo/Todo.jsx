@@ -4,7 +4,6 @@ import InputTodo from "./InputTodo";
 import ListItem from "./ListItem";
 import { addNewTask, getAllTask, deleteTask, updateTaskInDB } from "../../db/dataBase";
 import { useSignal } from "@preact/signals";
-import { async } from "@firebase/util";
 
 const Todo = () => {
   const todos = useSignal([]);
@@ -39,7 +38,7 @@ const Todo = () => {
 
   const updateTask = async (checkedValue, taskId)=>{
    const idToChange = await updateTaskInDB(taskId, checkedValue);
-   const taskIndex = todos.value.findIndex(t=> t.id === taskId);
+   const taskIndex = todos.value.findIndex(t=> t.id === idToChange);
    if(taskIndex >= 0){
     todos.value[taskIndex].done = checkedValue;
    }
